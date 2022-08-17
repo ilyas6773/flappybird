@@ -65,6 +65,9 @@ function love.load()
         fullscreen = false,
         resizable = true
     })
+
+    -- initialize input table
+    love.keyboard.keysPressed = {}
 end
 
 function love.resize(w, h)
@@ -72,8 +75,23 @@ function love.resize(w, h)
 end
 
 function love.keypressed(key)
+    -- add to our table of keys pressed this frame
+    love.keyboard.keysPressed[key] = true
+
     if key == 'escape' then
         love.event.quit()
+    end
+end
+
+--[[
+    New function used to check our global iput table for keys we activated during
+    this frame, looked up by their string value
+]]
+function love.keyboard.wasPressed(key)
+    if love.keyboard.keysPressed[key] then
+        return true
+    else
+        return false
     end
 end
 
@@ -83,6 +101,11 @@ function love.update(dt)
 
     -- scroll ground by preset speed * dt, looping back to 0 after the screen width passes
     groundScroll = (groundScroll + GROUND_SCROLL_SPEED * dt) % VIRTUAL_WIDTH
+
+    bird:update(dt)
+
+    -- reset input table
+    love.keyboard.keysPressed = {}
 end
 
 function love.draw()
@@ -99,6 +122,9 @@ function love.draw()
     -- draw the ground on top of the background, toward the bottom of the screen
     -- at its negative looping point
     love.graphics.draw(ground, -backgroundScroll, VIRTUAL_HEIGHT - 16)
+
+    -- render our bird to the screen using its own render logic
+    bird:render()
     
     push:finish()
 end
