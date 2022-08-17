@@ -16,6 +16,12 @@
 -- virtual resolution handling library
 push = require 'push'
 
+-- classic OOP class library
+Class = require 'class'
+
+-- bird class we've written
+require 'Bird'
+
 -- physical screen dimensions
 WINDOW_WIDTH = 1280
 WINDOW_HEIGHT = 720
@@ -43,12 +49,15 @@ local GROUND_SCROLL_SPEED = 60
 -- point at which we should loop our background back to X = 0
 local BACKGROUND_LOOPING_POINT = 413
 
+-- our bird sprite
+local bird = Bird()
+
 function love.load()
     -- initialize our nearest-neighbor filter
     love.graphics.setDefaultFilter('nearest', 'nearest')
 
     -- app window title
-    love.window.setTitle('Fifty Bird')
+    love.window.setTitle('Flappy Bird')
 
     -- initialize our virtual resolution
     push:setupScreen(VIRTUAL_WIDTH, VIRTUAL_HEIGHT, WINDOW_WIDTH, WINDOW_HEIGHT, {
