@@ -19,8 +19,8 @@ function Bird:init()
     self.height = self.image:getHeight()
 
     -- position bird in the middle of the screen
-    self.x = VIRTUAL_WIDTH / 2 - (self.width / 2)
-    self.y = VIRTUAL_HEIGHT / 2 - (self.height / 2)
+    self.x = VIRTUAL_WIDTH / 2 - 8
+    self.y = VIRTUAL_HEIGHT / 2 - 8
 
     -- Y velocity(gravity)
     self.dy = 0
@@ -51,6 +51,7 @@ function Bird:update(dt)
     -- add a sudden birst of negative gravity if we hit space
     if love.keyboard.wasPressed('space') then
         self.dy = -5
+        sounds['jump']:play()
     end
 
     -- apply current velocity to Y position
