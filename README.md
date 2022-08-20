@@ -22,8 +22,8 @@ To launch this game on your machine you will need LOVE2D installed on your machi
 * Github: [@ilyas6773](https://github.com/ilyas6773)
 * LinkedIn: [@veryeasytag](https://linkedin.com/in/veryeasytag)
 
-## Show your support
+## About
 
-Give a ⭐️ if this project helped you!
+For more information check the [Wiki Page](https://github.com/ilyas6773/flappybird/wiki) 
 
 ***
